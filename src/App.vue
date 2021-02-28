@@ -1,20 +1,20 @@
 <template>
-  <div id="app" class="md:flex">
+  <div id="app" class="md:flex text-gray-800">
     <div id="nav">
       <Navigation/>
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
     </div>
-    <div class="w-full my-16 mx-8">
-      <router-view/>
+    <div class="w-full h-screen py-16 px-2 md:px-8">
+      <About/>
     </div>
   </div>
 </template>
 <script>
 import Navigation from './components/Navigation'
+import About from './views/About'
 export default {
   components: {
-    Navigation
+    Navigation,
+    About
   }
 }
 </script>
