@@ -1,20 +1,40 @@
 <template>
-  <div id="app" class="md:flex text-gray-800">
-    <div id="nav">
-      <Navigation/>
-    </div>
-    <div class="w-full h-screen py-16 px-2 md:px-8">
-      <About/>
-    </div>
+  <div id="app" class="h-full">
+    <navigation />
+    <home />
+    <about />
+    <expertise />
+    <skills />
+    <recent-work />
+    <hobbies />
+    <recent-blogs />
+    <contact />
+    <page-footer />
   </div>
 </template>
 <script>
-import Navigation from './components/Navigation'
-import About from './views/About'
+import Navigation from "./components/Navigation.vue";
+import Home from "./views/Home.vue";
+import About from "./views/About.vue";
+import Expertise from "./views/Expertise.vue";
+import Skills from "./views/Skills.vue";
+import RecentWork from "./views/RecentWork.vue";
+import Hobbies from "./views/Hobbies.vue";
+import RecentBlogs from "./views/RecentBlogs.vue";
+import Contact from "./views/Contact.vue";
+import PageFooter from "./views/Footer.vue";
 export default {
   components: {
     Navigation,
-    About
-  }
-}
+    Home,
+    About,
+    Expertise,
+    Skills,
+    RecentWork,
+    Hobbies,
+    RecentBlogs,
+    Contact,
+    PageFooter,
+  },
+};
 </script>

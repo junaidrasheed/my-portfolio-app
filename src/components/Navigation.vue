@@ -1,31 +1,67 @@
 <template>
-    <div class="md:h-screen md:flex md:sticky md:left-0 md:rounded-r">
-        <div class="flex md:flex-col items-center justify-center">
-            <div v-for="(link, idx) in links" :key="idx" @click="activeLink = idx"
-                :class="[ idx < (links.length - 1) ? 'border-r md:border-b md:border-r-0 border-gray-200': '' , idx == activeLink ? 'text-red-500' : '' ]"
-                class="flex flex-col justify-center w-20 h-20 bg-white hover:text-red-500 cursor-pointer transform hover:scale-125 hover:shadow-md transition ease-linear">
-                <a :href="'#' + link.name.toLowerCase()">
-                    <div class="text-center p-2">
-                        <div class="" v-html="link.icon"></div>
-                        <span class="uppercase text-xs">{{ link.name }}</span>
-                    </div>
-                </a>
-            </div>
+  <div class="hidden md:block fixed top-14 right-72">
+    <div class="flex space-x-2">
+      <div v-if="active" class="flex items-center">
+        <div class="bg-black py-1 px-8 space-x-8">
+          <a
+            v-for="(item, idx) in links"
+            :href="item.link"
+            :key="idx"
+            class="text-gray-200 hover:text-white text-sm tracking-wide"
+          >
+            {{ item.name }}
+          </a>
         </div>
+      </div>
+      <nav-button @active="active = $event" />
     </div>
+  </div>
 </template>
 <script>
+import NavButton from "./NavButton.vue";
 export default {
-    data(){
-        return {
-            links: [
-                { name: 'About', icon: '<svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>'},
-                { name: 'Skill', icon: '<svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />'},
-                { name: 'Resume', icon: '<svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />'},
-                { name: 'Work', icon: '<svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>'},
-            ],
-            activeLink: 0
-        }
-    }
-}
+  components: {
+    NavButton,
+  },
+  data() {
+    return {
+      active: false,
+      links: [
+        { name: "Home", link: "#home" },
+        { name: "About", link: "#about" },
+        { name: "Work", link: "#work" },
+        { name: "Blog", link: "#blog" },
+        { name: "Contact", link: "#contact" },
+      ],
+      activeLink: 0,
+    };
+  },
+};
 </script>
+<style lang="postcss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style>

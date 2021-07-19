@@ -1,20 +1,13 @@
 <template>
-    <div class="py-6 px-8 border-b">
-        <span class="text-2xl font-bold">
-        <span class="text-red-500">{{ highlighted }}</span> {{ remaining }}
-        </span>
-    </div>
+  <span
+    :class="`text-${size}`"
+    class="tracking-widest font-bold block pb-8 uppercase"
+  >
+    <slot />
+  </span>
 </template>
 <script>
 export default {
-    props: ['title'],
-    computed: {
-        highlighted () {
-            return this.title.split(" ")[0]
-        },
-        remaining () {
-            return this.title.replace(this.highlighted, "")
-        }
-    }
-}
+  props: ["size"],
+};
 </script>

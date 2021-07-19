@@ -1,5 +1,26 @@
 <template>
-  <div class="md:flex h-full">
+  <section-container background="white" max-width="2xl">
+    <heading size="lg">Who am I?</heading>
+    <p class="text-md tracking-wide font-thin text-gray-900">
+      Hello, I am <span class="font-bold">Junaid</span>, a {{ age }} years old
+      Web Developer from Lahore, Pakistan offering {{ experience }}+ years of
+      professional experience in LAMP stack development. With major expertise in
+      backend development using popular frameworks like PHP-Laravel and Ruby on
+      Rails, I have also developed a likeness towards frontend development using
+      Vue.js and Tailwind CSS.
+    </p>
+    <div class="flex space-x-8 mt-8 mb-4 justify-center">
+      <a
+        :href="social.link"
+        target="blank"
+        v-for="(social, idx) in socials"
+        :key="idx"
+      >
+        <img :src="social.icon" class="w-5 h-5 inline" />
+      </a>
+    </div>
+  </section-container>
+  <!-- <div class="md:flex h-full">
     <ProfileCard class="w-full max-w-sm md:shadow-2xl"/>
     <div class="w-full md:w-3/4 bg-white my-8 rounded md:rounded-l-none md:rounded-r overflow-y-auto">
       <div id="about">
@@ -82,111 +103,53 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script>
-import ProfileCard from '../components/ProfileCard'
-import Heading from '../components/Heading'
+// import ProfileCard from "../components/ProfileCard";
+import SectionContainer from "../components/SectionContainer.vue";
+import Heading from "../components/Heading.vue";
+import Facebook from "../assets/icons/facebook.png";
+import Github from "../assets/icons/github.png";
+import Instagram from "../assets/icons/instagram.png";
+import LinkedIn from "../assets/icons/linkedin.png";
+import Twitter from "../assets/icons/twitter.png";
+
 export default {
   components: {
-    ProfileCard,
-    Heading
+    // ProfileCard,
+    SectionContainer,
+    Heading,
   },
   computed: {
-    currentYear(){
-      return new Date().getFullYear()
+    currentYear() {
+      return new Date().getFullYear();
     },
     age() {
-      return ( this.currentYear - 1996)
+      return this.currentYear - 1996;
     },
     experience() {
-      return this.currentYear - 2017
-    }
+      return this.currentYear - 2017;
+    },
   },
-  data () {
+  data() {
     return {
-      mainDomains: [
-        { 
-          title: 'Fontend Dev', 
-          description: 'Hands on experience of working with Vue.js frontend framework along side Tailwind CSS for UI designs.', 
-          icon: '<svg class="w-10 h-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>'
-        },
-        { 
-          title: 'Backend Dev', 
-          description: 'Experienced in PHP/Laravel Framework, with working knowledge of Ruby on Rails.', 
-          icon: '<svg class="w-10 h-10 text-white" fill="currentColor" enable-background="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m22.25 20h-20.5c-.965 0-1.75-.785-1.75-1.75v-12.5c0-.965.785-1.75 1.75-1.75h20.5c.965 0 1.75.785 1.75 1.75v12.5c0 .965-.785 1.75-1.75 1.75zm-20.5-14.5c-.138 0-.25.112-.25.25v12.5c0 .138.112.25.25.25h20.5c.138 0 .25-.112.25-.25v-12.5c0-.138-.112-.25-.25-.25z"/><path d="m16.25 24h-8.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h8.5c.414 0 .75.336.75.75s-.336.75-.75.75z"/><path d="m12 24c-.414 0-.75-.336-.75-.75v-4c0-.414.336-.75.75-.75s.75.336.75.75v4c0 .414-.336.75-.75.75z"/><path d="m15.25 14.5c-.173 0-.346-.059-.488-.181-.314-.27-.351-.743-.081-1.058l1.081-1.261-1.082-1.262c-.27-.314-.233-.788.081-1.058.315-.27.788-.233 1.058.081l1.5 1.75c.241.281.241.695 0 .977l-1.5 1.75c-.148.173-.358.262-.569.262z"/><path d="m8.75 14.5c-.211 0-.421-.089-.57-.262l-1.5-1.75c-.241-.281-.241-.695 0-.977l1.5-1.75c.27-.313.743-.351 1.058-.08.314.27.351.743.081 1.058l-1.081 1.261 1.082 1.262c.27.314.233.788-.081 1.058-.142.12-.316.18-.489.18z"/><path d="m11.25 16c-.056 0-.112-.006-.169-.019-.404-.093-.655-.496-.563-.899l1.5-6.5c.093-.403.495-.654.899-.563.404.093.655.496.563.899l-1.5 6.5c-.079.348-.388.582-.73.582z"/></svg>' 
-        },
-        { 
-          title: 'API Development', 
-          description: 'Working knowledge of API development using Laravel framework for multiple projects.', 
-          icon: '<svg class="w-8 h-8 text-white" fill="currentColor" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m504.971 239.029-56.971-56.97v-98.059c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971l47.03 47.029-47.029 47.029c-4.501 4.501-7.03 10.606-7.03 16.971v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941z"/><path d="m112 192v-108c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941l56.971 56.971v98.059c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36v-108c0-6.365-2.529-12.47-7.029-16.971l-47.03-47.029 47.029-47.029c4.501-4.501 7.03-10.606 7.03-16.971z"/></svg>' 
-        },
+      socials: [
+        { icon: Github, link: "#" },
+        { icon: LinkedIn, link: "#" },
+        { icon: Instagram, link: "#" },
+        { icon: Twitter, link: "#" },
+        { icon: Facebook, link: "#" },
       ],
-      skills: [
-        { name: 'Laravel', value: 5 },
-        { name: 'Tailwind CSS', value: 4 },
-        { name: 'Ruby on Rails', value: 3 },
-        { name: 'MySQL / Postgres', value: 4 },
-        { name: 'JS / Jquery', value: 3 },
-        { name: 'Git', value: 5 },
-        { name: 'Websockets', value: 4 },
-        { name: 'Linux', value: 4 },
-        { name: 'AWS', value: 3 },
+      tools: ["vscode", "github", "dbeaver"],
+      interests: [
+        "Computer Gaming",
+        "Drawing",
+        "Hiking",
+        "Netflix",
+        "Travelling",
       ],
-      tools: [ 'vscode', 'github', 'dbeaver'],
-      interests: ['Computer Gaming', 'Drawing', 'Hiking', 'Netflix', 'Travelling'],
-      projects: [
-        {
-          title: 'Cointelegraph Markets Pro',
-          image: '',
-          shortDescription: '',
-          longDescription: '',
-          tools: [],
-          link: '',
-          type: 'Professional',
-          reponsibilities: [
-
-          ]
-        },
-        {
-          title: 'TheTIE Vision',
-          image: '',
-          shortDescription: '',
-          longDescription: '',
-          tools: [],
-          link: '',
-          type: 'Professional',
-          reponsibilities: [
-            
-          ]
-        },
-        {
-          title: 'TheTIE Vision API',
-          image: '',
-          shortDescription: '',
-          longDescription: '',
-          tools: [],
-          link: '',
-          type: 'Professional',
-          reponsibilities: [
-            
-          ]
-        },
-        {
-          title: 'Healthcare Business Insights (HBI)',
-          image: '',
-          shortDescription: '',
-          longDescription: '',
-          tools: [],
-          link: '',
-          type: 'Professional',
-          reponsibilities: [
-            
-          ]
-        }
-
-      ]
-    }
-  }
-}
+    };
+  },
+};
 </script>

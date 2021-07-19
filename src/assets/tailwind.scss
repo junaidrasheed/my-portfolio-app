@@ -1,0 +1,79 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300&display=swap");
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  // /* scroll-behavior: smooth; */
+}
+
+body {
+  scrollbar-color: #4a5568 #2d3748;
+  scrollbar-width: auto;
+  font-family: "Open Sans", sans-serif;
+}
+
+.profile-bg {
+  /* The image used */
+  background-image: url("profile.jpg");
+
+  /* Set a specific height */
+  height: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.15s ease-in-out;
+  transition-property: background-position;
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+
+  -webkit-transition-property: background-position;
+  -moz-transition-property: background-position;
+  -o-transition-property: background-position;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  @apply bg-gray-500;
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.hide-scroll::-webkit-scrollbar-thumb {
+  @apply bg-gray-500;
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0);
+}
+
+.hide-scroll:hover::-webkit-scrollbar-thumb {
+  @apply bg-gray-400;
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+/**end scroll css*/
+
+.btn {
+  @apply flex w-full px-4 md:px-8 py-4 items-center justify-center uppercase tracking-wide hover:text-red-500 hover:bg-gray-100;
+}
+
+.tag {
+  @apply bg-red-500 px-2 rounded text-white;
+}
+
+@import "tailwindcss/utilities";
